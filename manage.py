@@ -6,10 +6,11 @@ sys.setdefaultencoding( "utf-8" )
 from weather import WeatherPredictData
 from BaiduYuyin import YuYin
 import DailyEnglish
+import itchat
 
 '''
 每日播报内容：
-1.英语早操（todo：英文语音。done：中文语音）
+1.英语早操
 2.天气预报
     - 日期、星期、时间
     - 地点
@@ -60,9 +61,11 @@ if __name__ == '__main__':
     北京ID：CN101010100
     深圳ID：CN101280601
     长沙ID：CN101250101
+    成都ID：CN101270101
+    郑州ID：CN101180101
     '''
 
-    cityid = "CN101010100"
+    cityid = "CN101180101"
 
     re = Broadcast().daily_broadcast(cityid)
     res = Broadcast().English_exercise_content()
@@ -73,6 +76,12 @@ if __name__ == '__main__':
 
     for i in res:
         text = text + i
+
+    # 登陆
+    itchat.auto_login()
+    # 发送文本消息，发送目标是“文件传输助手”
+    itchat.send(text, toUserName='filehelper')
+
     result   = YuYin().yuyin(text.encode())
 
 
@@ -80,5 +89,7 @@ if __name__ == '__main__':
     for i in re:
 
         print i.decode()
+        # itchat.send(i, toUserName='filehelper')
     for i in res:
         print i.decode()
+        # itchat.send(i, toUserName='filehelper')
