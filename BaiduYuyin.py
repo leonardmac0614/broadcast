@@ -8,14 +8,14 @@ import urllib
 import webbrowser
 
 '''
-https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=9623067&client_secret=wUR5f0xwBZ2Bd3XhduhMyyYH
+https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=vrikaaMUSknn1izjXZk1NuF9&client_secret=47b647223883e2cb625b6b6446cd3961
 
 https://openapi.baidu.com/oauth/2.0/token?
     grant_type=client_credentials&
-    client_id=wUR5f0xwBZ2Bd3XhduhMyyYH&
-    client_secret= 39bee0c637f30f47c09bd78897faedc9&
+    client_id=vrikaaMUSknn1izjXZk1NuF9&
+    client_secret= 47b647223883e2cb625b6b6446cd3961&
 
-acess_token =  23.be37b6d551b92aabe2831ff3c034e493.2592000.1496912910.2400369472-9623067
+acess_token =  24.6ed051e0ba2b1fe944da549846a4b39d.2592000.1499854092.282335-9750820
 '''
 class YuYin(object):
     """docstring for yuyin."""
@@ -25,7 +25,7 @@ class YuYin(object):
 
     def yuyin(self,text):
 
-        url  = "http://tsn.baidu.com/text2audio?tex=%s&lan=zh&per=0&cuid=98:01:a7:b0:90:23&ctp=1&tok=23.be37b6d551b92aabe2831ff3c034e493.2592000.1496912910.2400369472-9623067"
+        url  = "http://tsn.baidu.com/text2audio?tex=%s&lan=zh&per=0&cuid=98:01:a7:b0:90:23&ctp=1&tok=24.6ed051e0ba2b1fe944da549846a4b39d.2592000.1499854092.282335-9750820"
         text = urllib.quote(text)
         url  = url % text
 

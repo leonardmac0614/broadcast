@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+ #!/usr/bin/env python
 # coding:utf8
 
 import sys
@@ -83,7 +83,7 @@ if __name__ == '__main__':
 	# terminal = "mv "+ date +"-English-exercise-"+ delta +"day.md ../hexo_test/source/_posts"
 	# os.system(terminal)
 
-	
+
 	mv = "cd ../hexo_test"
 	generate = "hexo generate"
 	deploy = "hexo deploy"

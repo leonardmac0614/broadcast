@@ -31,12 +31,12 @@ class WeatherPredictData(object):
         resp = urllib2.urlopen(req).read()
         data = json.loads(resp)
 
-        weather = data["HeWeather data service 3.0"]
-        daily_forecast = weather[0]["daily_forecast"]
-        aqi            = weather[0]["aqi"]
-        basic          = weather[0]["basic"]
-        hourly_forecast= weather[0]["hourly_forecast"]
-        suggestion     = weather[0]["suggestion"]
+        # weather = data["HeWeather data service 3.0"]
+        # daily_forecast = weather[0]["daily_forecast"]
+        # aqi            = weather[0]["aqi"]
+        # basic          = weather[0]["basic"]
+        # hourly_forecast= weather[0]["hourly_forecast"]
+        # suggestion     = weather[0]["suggestion"]
         return data
 
     def Heweather_basic(self,cityid):
@@ -76,19 +76,19 @@ class WeatherPredictData(object):
     def Output_daily_forecast(self,cityid):
 
         city_name        = self.Heweather_basic(cityid)["city"]
-        latest_data_date = "最新天气更新时间："+self.Heweather_basic(cityid)["update"]["loc"]
+        latest_data_date = city_name + "最新天气更新时间："+self.Heweather_basic(cityid)["update"]["loc"]
         condition_day    = "白天：" + self.Heweather_daily_forecast(cityid)[0]["cond"]["txt_d"]+"."
         condition_night  = "夜间：" + self.Heweather_daily_forecast(cityid)[0]["cond"]["txt_n"]+"."
         humidity         = "湿度：" + self.Heweather_daily_forecast(cityid)[0]["hum"]+ "%"
         temperature_max  = "最高温度：" + self.Heweather_daily_forecast(cityid)[0]["tmp"]["max"]+"℃"
         temperature_min  = "最低温度：" + self.Heweather_daily_forecast(cityid)[0]["tmp"]["min"]+"℃"
         wind             = self.Heweather_daily_forecast(cityid)[0]["wind"]["dir"]+ " 风速：" + self.Heweather_daily_forecast(cityid)[0]["wind"]["spd"]+"km/h"
-        suggestion_air   = "天气建议:" + self.Heweather_suggestion(cityid)["air"]["txt"]
+        suggestion_air   = "天气建议: " + self.Heweather_suggestion(cityid)["air"]["txt"]
         suggestion_comf  = "舒适度：" + self.Heweather_suggestion(cityid)["comf"]["txt"]
         suggestion_drsg  = "穿衣建议：" + self.Heweather_suggestion(cityid)["drsg"]["txt"]
         suggestion_sport = "运动建议：" + self.Heweather_suggestion(cityid)["sport"]["txt"]
 
-        return[city_name,latest_data_date,condition_day,condition_night,humidity,temperature_max,temperature_min,wind,suggestion_air,suggestion_comf,suggestion_drsg,suggestion_sport]
+        return[latest_data_date,condition_day,condition_night,humidity,temperature_max,temperature_min,wind,suggestion_air,suggestion_comf,suggestion_drsg,suggestion_sport]
 
 
 
