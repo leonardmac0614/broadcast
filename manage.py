@@ -206,7 +206,7 @@ if __name__ == '__main__':
     exit()
     '''
 
-    f = open("classify_city_id.json")
+    f = open("/root/broadcast/classify_city_id.json")
     data = json.load(f)
     for k,v in data.items():
         print k
