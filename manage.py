@@ -33,7 +33,7 @@ from email.mime.multipart import MIMEMultipart
 class Broadcast(object):
     """docstring for Broadcast."""
     def __init__(self):
-
+        return None
 
     def daily_broadcast(self,cityid):
 
