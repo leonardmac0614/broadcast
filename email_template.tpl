@@ -18,7 +18,7 @@
 <td style="box-sizing: border-box; font-family: 'Helvetica Neue', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Microsoft Yahei', sans-serif; font-size: 14px; line-height: 1.42857143; vertical-align: top; margin: 0; padding: 0;" valign="top">
                                                     <div class="content" style="box-sizing: border-box; font-family: 'Helvetica Neue', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Microsoft Yahei', sans-serif; font-size: 14px; line-height: 1.42857143; margin: 0; padding: 0;">
 <p>Hi，早上好！</p>
-<p>新的一天已经开始，让我们一起嗨起来！</p>'''+content+'''
+<p>新的一天已经开始，让我们一起嗨起来！</p><content>
 
 <p><br></p>
 </div>

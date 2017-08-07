@@ -119,6 +119,7 @@ class Broadcast(object):
         fname = os.path.join("email_template.tpl")
         with open(fname, "r") as tmpl:
             tst = tmpl.read()
+        tst = tst.replace("<content>",content)
 
         msg = MIMEMultipart()
         msg = MIMEMultipart('alternative')
