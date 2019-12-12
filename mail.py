@@ -9,7 +9,7 @@ _user = "147640157@student.usst.edu.cn"
 _pwd  = "q2520457"
 _to   = "405666135@qq.com"
 
-cityid = "CN101200101"
+cityid = "CN101020100"
 content = Broadcast().convert_content_for_html(cityid)
 
 fname = os.path.join("email_template.tpl")
