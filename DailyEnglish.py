@@ -12,7 +12,7 @@ import json
 from bs4 import BeautifulSoup
 import datetime
 import os
-
+import requests
 
 def getTemplate():
    return '''---
@@ -28,31 +28,23 @@ photos:
 "<content1>"
 <p><content2></p>
 '''
-def getcontent():
-	today=str(datetime.datetime.now().strftime('%Y-%m-%d'))
-    # https://www.shanbay.com/soup/mobile/quote/2017-05-08/?content_id=1676&social_service=x&url_key=8a60bd51c&content_type=quote%3Aquote&track_id=2696e460-11db-11e7-a294-00163e124371
-	url = 'https://www.shanbay.com/soup/mobile/quote/'+today+'/?content_id=1676&social_service=x&url_key=8a60bd51c&content_type=quote%3Aquote&track_id=2696e460-11db-11e7-a294-00163e124371'
-	request = urllib2.Request(url=url)
-	response = urllib2.urlopen(request, timeout=20)
-	result = response.read()
-	html = BeautifulSoup(result,"html.parser")
+def getcontent(today):
+    # today=str(datetime.datetime.now().strftime('%Y-%m-%d'))
+    url = 'https://rest.shanbay.com/api/v2/quote/quotes/today/'
+    response = json.loads(requests.request(url=url,method="get").text)
+    # html = BeautifulSoup(response,"html.parser")
 
-	try:
-		content= html.find_all('div',attrs={"class": "content"})[0]
-		content = content.get_text()
+    try:
+        content = response['data']["content"]
+        translation = response["data"]["translation"]
+        # content= html.find_all('div',attrs={"class": "content"})[0]
+        # content = content.get_text()
+    except:
+        pass
 
-	except:
-		pass
-
-	try:
-		translation = html.find_all('div',attrs={"class": "translation"})[0]
-		translation = translation.get_text()
-
-	except:
-		pass
+    return content,translation
 
 
-	return content,translation
 
 def convert_date_to_num():
 	a = datetime.datetime.now()
@@ -62,7 +54,10 @@ def convert_date_to_num():
 	return b,delta
 
 if __name__ == '__main__':
-    '''
+     today=str(datetime.datetime.now().strftime('%Y-%m-%d'))
+     print (getcontent(today))   
+
+'''
     files = getTemplate()
 	content = getcontent()[0]
 	translation = getcontent()[1]

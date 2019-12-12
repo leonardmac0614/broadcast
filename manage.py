@@ -4,12 +4,15 @@ import os
 import sys
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from weather import WeatherPredictData
 from BaiduYuyin import YuYin
 import DailyEnglish
 import json
 from email.mime.multipart import MIMEMultipart
 #import itchat
+import datetime
 
 '''
 每日播报内容：
@@ -29,6 +32,7 @@ from email.mime.multipart import MIMEMultipart
     - 明日预报（condition、最高气温、最低气温）
 
 '''
+today=str(datetime.datetime.now().strftime('%Y-%m-%d'))
 
 class Broadcast(object):
     """docstring for Broadcast."""
@@ -44,8 +48,7 @@ class Broadcast(object):
     def English_exercise_content(self):
 
         con= "英语早操："
-        en = DailyEnglish.getcontent()[0]
-        cn = DailyEnglish.getcontent()[1]
+        en,cn = DailyEnglish.getcontent(today)
 
         return [con,en,cn]
 
@@ -113,7 +116,7 @@ class Broadcast(object):
         import smtplib
         from email.mime.text import MIMEText
 
-        _user = "147640157@st.usst.edu.cn"
+        _user = "147640157@student.usst.edu.cn"
         _pwd  = "q2520457"
 
         fname = os.path.join("email_template.tpl")
@@ -143,8 +146,19 @@ class Broadcast(object):
 
 if __name__ == '__main__':
 
-    with open("classify_city_id.json") as cd:
-        data = json.load(cd)
+   # with open("classify_city_id.json") as cd:
+   #     data = json.load(cd)
+    data = {
+           "上海":{
+      "CN101020100":[
+                     "405666135@qq.com"] 
+    }}
+    #re = WeatherPredictData().Output_daily_forecast("CN101020100")
+    re = Broadcast().convert_content("CN101020100")
+    print re
+
+    res   = YuYin().yuyin(re)
+    exit()
 
     for k,v in data.items():
         print k
